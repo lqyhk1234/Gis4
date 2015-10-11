@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Gis4</string>
+
+    <string name="title_activity_start_menu">武大图书馆导航系统</string>
+    <string name="current_Location">当前位置</string>
+    <string name="destination_Location">目标位置</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="QR_HINT">扫描二维码获取当前位置</string>
+    <string name="StrartNavigation">开始导航</string>
+    <string name="title_activity_get_location">GetLocation</string>
+    <string name="title_activity_get_current_location">获得当前位置</string>
+    <string name="title_activity_capture_qr">CaptureQR</string>
+
+</resources>
