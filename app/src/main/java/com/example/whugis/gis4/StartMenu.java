@@ -9,37 +9,45 @@ import android.widget.TextView;
 
 public class StartMenu extends AppCompatActivity {
 
-    int FORLOCATION = 1;
+    enum Request {GET_CURRENT_LOCATION}
+
 
     String QRContentStr = null;
     int GisLocation = 0;
+
+    TextView currentLocation_Textview = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        currentLocation_Textview = (TextView) findViewById(R.id.currentLocation_Textview);
     }
 
 
-    public void getLocation(View view) {
-        Intent intent1 = new Intent(this, GetCurrentLocation.class);
-
-        startActivityForResult(intent1, FORLOCATION);
+    public void getLocation(View view)
+    {
+        Intent intent_GetCurrentLocation = new Intent(this, GetCurrentLocation.class);
+        startActivityForResult(intent_GetCurrentLocation, Request.GET_CURRENT_LOCATION.ordinal());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
 
-
-        if (resultCode == Activity.RESULT_OK && requestCode == FORLOCATION)
+        if (resultCode == Activity.RESULT_OK && requestCode == Request.GET_CURRENT_LOCATION.ordinal())
         {
             Bundle bundle = data.getExtras();
-            QRContentStr = bundle.getString("QRContentStr");
+            QRContentStr = bundle.getString("QRContent");
             GisLocation = bundle.getInt("GisLocation");
 
-            TextView textView = (TextView) findViewById(R.id.textView2);
-            textView.setText( Integer.toString(GisLocation) + "  " + QRContentStr);
+            currentLocation_Textview.append("\nQRContent = " + QRContentStr + "\n");
+            currentLocation_Textview.append("GisLocation = " + Integer.toString(GisLocation) + "\n");
+        }
+        else if(resultCode == Activity.RESULT_CANCELED && requestCode == Request.GET_CURRENT_LOCATION.ordinal())
+        {
+            currentLocation_Textview.append("GetCurrentLocation Failed\n");
         }
 
     }

@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
+                android:id="@+id/currentLocation_Textview"
                 android:layout_weight="1"
                 android:background="#6fffffff"
                 android:hint="@string/QR_HINT"

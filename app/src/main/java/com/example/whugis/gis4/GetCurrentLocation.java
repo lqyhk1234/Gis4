@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 public class GetCurrentLocation extends AppCompatActivity {
 
-    public static final int FORQR = 1;
+    TextView currentLocationCheck_Textview;
 
-    Bundle QRContent = null;
-    String QRContentStr = null;
+
+    Bundle QRContentBundle = null;
+    String QRContent = null;
 
     int GisLocation = 0;
 
@@ -19,6 +20,8 @@ public class GetCurrentLocation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_current_location);
+
+        currentLocationCheck_Textview = (TextView) findViewById(R.id.currentLocationCheck_TextView);
     }
 
 
@@ -26,47 +29,40 @@ public class GetCurrentLocation extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(QRContent == null)
-        {
-            captureQRAgain(findViewById(R.id.captureQRAgain));
-        }
 
 
     }
 
     public void captureQRAgain(View view)
     {
-        Intent intent = new Intent(this, CaptureQR.class);
-
-        startActivityForResult(intent, FORQR);
+        Intent intent = new Intent(this, CaptureQRCode.class);
+        startActivityForResult(intent, 0);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode)
+
+        if(resultCode == RESULT_OK)
         {
-            case FORQR:
-                if(resultCode == RESULT_OK)
-                {
-                    QRContent = data.getExtras();
-                    QRContentStr = QRContent.getString("QRContentStr");
+            QRContentBundle = data.getExtras();
+            QRContent = QRContentBundle.getString("QRContent");
 
-
-
-                    TextView textView = (TextView) findViewById(R.id.currentLocation_TextView);
-                    textView.setText( QRContentStr);
-                }
-                break;
+            currentLocationCheck_Textview.append("\nQRContent = " + QRContent + "\n");
         }
+        else
+        {
+            currentLocationCheck_Textview.append("\n GetQRFailed\n");
+        }
+
     }
 
     public void returnCurrentLocation(View view)
     {
         Bundle bundle = new Bundle();
-        bundle.putString("QRContentStr", QRContentStr);
-        bundle.putInt("GisLocation", QRContentStr.length());
+        bundle.putString("QRContent", QRContent);
+        bundle.putInt("GisLocation", QRContent.length());
 
         Intent intent = new Intent();
         intent.putExtras(bundle);
