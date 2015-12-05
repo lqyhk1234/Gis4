@@ -1,6 +1,7 @@
 package com.example.whugis.gis4;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,14 +15,16 @@ import com.esri.android.toolkit.map.MapViewHelper;
 import com.esri.core.geodatabase.ShapefileFeatureTable;
 import com.esri.core.geometry.Envelope;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.logging.FileHandler;
 
 public class GetCurrentLocation extends AppCompatActivity {
 
     TextView currentLocationCheck_Textview = null;
     MapView currentLocation_Mapview = null;
 
-    SDCardHelper sdCardHelper = new SDCardHelper();
+    SDCardHelper sdCardHelper = SDCardHelper.getSingletonInstance();
 
 
 
@@ -43,7 +46,7 @@ public class GetCurrentLocation extends AppCompatActivity {
         //        "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
 
 
-     /*   for (String shpPath : SDCardHelper.mapFiles) {
+        for (String shpPath : SDCardHelper.mapFiles) {
             String wholeshpPath = sdCardHelper.getSDPath() + shpPath;
             try {
 
@@ -55,10 +58,15 @@ public class GetCurrentLocation extends AppCompatActivity {
 
             } catch (FileNotFoundException e) {
 
-                e.printStackTrace();
+              currentLocationCheck_Textview.append(e.getMessage());
 
             }
-        }*/
+         /*   currentLocationCheck_Textview.append(wholeshpPath);
+            File file = new File(wholeshpPath);
+            currentLocationCheck_Textview.append(Boolean.toString(file.exists()));
+            currentLocationCheck_Textview.append(Boolean.toString(file.canRead()));
+            currentLocationCheck_Textview.append("\n");*/
+        }
         //  currentLocation_Mapview.setExtent();
 
         //   currentLocationCheck_Textview.append(currentLocation_Mapview.getCenter().toString());
@@ -66,7 +74,7 @@ public class GetCurrentLocation extends AppCompatActivity {
 
         //currentLocation_Mapview
 
-
+       // currentLocationCheck_Textview.append(SDCardHelper.getSDPath() + "\n");
 
     }
 
