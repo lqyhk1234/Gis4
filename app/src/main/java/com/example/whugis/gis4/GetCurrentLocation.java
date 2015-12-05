@@ -46,7 +46,7 @@ public class GetCurrentLocation extends AppCompatActivity {
         //        "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
 
 
-        for (String shpPath : SDCardHelper.mapFiles) {
+   /*     for (String shpPath : SDCardHelper.mapFiles) {
             String wholeshpPath = sdCardHelper.getSDPath() + shpPath;
             try {
 
@@ -61,20 +61,8 @@ public class GetCurrentLocation extends AppCompatActivity {
               currentLocationCheck_Textview.append(e.getMessage());
 
             }
-         /*   currentLocationCheck_Textview.append(wholeshpPath);
-            File file = new File(wholeshpPath);
-            currentLocationCheck_Textview.append(Boolean.toString(file.exists()));
-            currentLocationCheck_Textview.append(Boolean.toString(file.canRead()));
-            currentLocationCheck_Textview.append("\n");*/
-        }
-        //  currentLocation_Mapview.setExtent();
 
-        //   currentLocationCheck_Textview.append(currentLocation_Mapview.getCenter().toString());
-        //currentLocationCheck_Textview.append(currentLocation_Mapview.getExtent().toString());
-
-        //currentLocation_Mapview
-
-       // currentLocationCheck_Textview.append(SDCardHelper.getSDPath() + "\n");
+        }*/
 
     }
 
