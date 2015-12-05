@@ -5,10 +5,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.esri.android.map.FeatureLayer;
+import com.esri.android.map.MapView;
+import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
+import com.esri.android.toolkit.map.MapViewHelper;
+import com.esri.core.geodatabase.ShapefileFeatureTable;
+import com.esri.core.geometry.Envelope;
+
+import java.io.FileNotFoundException;
 
 public class GetCurrentLocation extends AppCompatActivity {
 
-    TextView currentLocationCheck_Textview;
+    TextView currentLocationCheck_Textview = null;
+    MapView currentLocation_Mapview = null;
+
+    SDCardHelper sdCardHelper = new SDCardHelper();
+
+
 
 
     Bundle QRContentBundle = null;
@@ -22,13 +37,42 @@ public class GetCurrentLocation extends AppCompatActivity {
         setContentView(R.layout.activity_get_current_location);
 
         currentLocationCheck_Textview = (TextView) findViewById(R.id.currentLocationCheck_TextView);
-    }
+        currentLocation_Mapview = (MapView) findViewById(R.id.currentLocation_Mapview);
 
+        // currentLocation_Mapview.addLayer(new ArcGISDynamicMapServiceLayer("" +
+        //        "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
+
+
+     /*   for (String shpPath : SDCardHelper.mapFiles) {
+            String wholeshpPath = sdCardHelper.getSDPath() + shpPath;
+            try {
+
+                ShapefileFeatureTable shapefileFeatureTable = new ShapefileFeatureTable(wholeshpPath);
+
+                FeatureLayer featureLayer = new FeatureLayer(shapefileFeatureTable);
+
+                currentLocation_Mapview.addLayer(featureLayer);
+
+            } catch (FileNotFoundException e) {
+
+                e.printStackTrace();
+
+            }
+        }*/
+        //  currentLocation_Mapview.setExtent();
+
+        //   currentLocationCheck_Textview.append(currentLocation_Mapview.getCenter().toString());
+        //currentLocationCheck_Textview.append(currentLocation_Mapview.getExtent().toString());
+
+        //currentLocation_Mapview
+
+
+
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-
 
 
     }

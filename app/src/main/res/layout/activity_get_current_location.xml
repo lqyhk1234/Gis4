@@ -7,19 +7,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.whugis.gis4.GetCurrentLocation">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/startmenubackgroundpicture"
-        android:cropToPadding="true"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_alignParentTop="true"
-        />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,10 +29,22 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/currentLocationCheck_TextView"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
         android:hint="当前地址"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <com.esri.android.map.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/currentLocation_Mapview"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/currentLocationCheck_TextView"
+        initExtent="-20037507.0672, -30240971.9584, 20037507.0672, 30240971.9584"
+        mapoptions.center="34.056215, -117.195668"
+        mapoptions.ZoomLevel="16"/>
 
 
 </RelativeLayout>
