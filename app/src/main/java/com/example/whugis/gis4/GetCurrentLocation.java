@@ -42,8 +42,10 @@ public class GetCurrentLocation extends AppCompatActivity {
         currentLocationCheck_Textview = (TextView) findViewById(R.id.currentLocationCheck_TextView);
         currentLocation_Mapview = (MapView) findViewById(R.id.currentLocation_Mapview);
 
-        // currentLocation_Mapview.addLayer(new ArcGISDynamicMapServiceLayer("" +
-        //        "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
+         currentLocation_Mapview.addLayer(new ArcGISDynamicMapServiceLayer("" +
+                "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
+
+       // currentLocation_Mapview.
 
 
    /*     for (String shpPath : SDCardHelper.mapFiles) {
@@ -63,6 +65,8 @@ public class GetCurrentLocation extends AppCompatActivity {
             }
 
         }*/
+
+
 
     }
 
